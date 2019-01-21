@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>jquery-ajax</title>
+</head>
+<body>
+      
+      <script src="http://libs.baidu.com/jquery/1.11.3/jquery.js"></script>
+      <script>
+            // 1. getJSON getScript
+            // 2. load $.get $.post;
+            // 3. $.ajax
+
+            // $.get || $.post;
+            // $.get(url,data,callback,datatype)
+            // $.get(url,data)
+
+            // Deferred;  Promise 的爸爸;
+
+            // Promise 的本质 => 状态机;
+
+          
+            
+
+            // function createPromise(callback){
+            //       var state = {
+            //             state : "pending",
+            //             succ : function(){
+
+            //             },
+            //             err: function(){
+
+            //             }
+            //       }
+
+            //       callback(function(){
+            //             state.state = "resolved";
+            //             state.succ();
+            //       },function(){
+            //             state.state = "rejected";
+            //             state.err();
+            //       });
+
+            //       return state;
+            // }
+
+
+            // var pro = createPromise(function(resolve , reject){
+            //       console.log(resolve,reject )
+            // });
+
+            // console.log(pro);
+
+
+            // $.Deferred;
+
+            // jquery 解决异步回调地狱的方式完全不按套路出牌;
+
+
+            // console.log($.Deferred());
+
+            // var def = $.Deferred();
+            // def.resolve();
+            // def.then(function(){
+            //       alert();
+            // })
+
+            // 加入没有promise 我们要使用 deferred 封装ajax;
+
+
+            // function ajaxGet(url){
+            //       return new Promise(function(resolve,reject){
+
+            //             var xhr = new XMLHttpRequest();
+            //             xhr.open("GET",url);
+            //             xhr.send(null)
+            //             // xhr.readyState === 4;
+            //             // level 2; 
+            //             xhr.onload = function(){
+            //                   if(xhr.status === 200){
+            //                         resolve();  
+            //                   }     
+            //             }
+            //       });
+            // }
+
+            // ajaxGet()
+            // .then()
+
+            // 1. 创建一个状态机，并把状态机返回。
+            // 2. 在异步程序之中改变状态;
+            // 3. 在外部使用时监听状态;
+
+            // function ajaxGet(){
+            //       var def = $.Deferred();
+            //       var xhr = new XMLHttpRequest();
+            //       xhr.open("GET",url);
+            //       xhr.send(null);
+            //       xhr.onload = function(){
+            //             if(xhr.status === 200){
+            //                   def.resolve();
+            //             }
+            //       }
+            //       return def;
+            // }
+
+            // ajaxGet()
+            // .then();
+
+            // function def(){
+            //       var def = $.Deferred();
+
+            //       // 为了隐藏更改细节,所以在def对象之中提供了一个方法; promise();
+            //       return def.promise();
+            // }
+            // function pro(){
+            //     return new Promise(function(){
+
+            //     })
+            // }
+            // console.log(def());
+
+           
+            
+            // console.log($.get())
+
+            // 所有 jquery ajax对象的返回值都是 deferred 对象和 xhr 对象的结合体;
+            // Object.assign(); => $.extend();
+
+
+            // $.get("./data/test.json")
+            // .done(function(res){
+            //       console.log(res);
+            // })
+
+      </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>pagination</title>
+
+      <style>
+            *{
+                  margin: 0;
+                  padding: 0;
+            }
+            .pagination {
+                  padding: 20px;
+            }
+            .pagination a{
+                  padding: 20px;
+                  line-height: 20px;
+            }
+            .pagination span{
+                  padding: 20px;
+                  box-shadow:  0 0 5px #ddd;
+            }
+      </style>
+</head>
+<body>
+     
+
+      <div class="pagination"></div>
+
+      <script src="http://libs.baidu.com/jquery/1.11.3/jquery.js"></script>
+
+      <script src="http://www.jq22.com/demo/pagination20160204/jquery.pagination.js"></script>
+      <script>
+         
+            $(".pagination").pagination({
+                  // pageCount: 100
+                  totalData : 100,
+                  showData : 2,
+                  prevContent : "上一页" , 
+                  nextContent : "下一页",
+                  callback : function (api) {
+                        console.log(api.getCurrent());
+                  }
+            });
+            
+      </script>
+
+   
+</body>
+</html>

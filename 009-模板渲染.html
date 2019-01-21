@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>模板渲染</title>
+</head>
+<body>
+
+
+      <div id="content"></div>
+
+      <script type="text/html" id="li">
+           
+            <!-- hello world -->
+            {{each list item}}
+               <li>{{item}}</li>
+            {{/each}}
+
+      </script>
+      <script src="http://libs.baidu.com/jquery/1.11.3/jquery.js"></script>
+      <script src="./libs/art-template.js"></script>
+      <script>
+            // 渲染十个li;
+            // 十个 是虚指 , 实际上不确定有多少个, 根据数据来决定;
+            var arr = [1,2,3,3,4,5,6,6,8];
+
+            var html = template("li",{list : arr})
+            // data 的key值在模板之中可以直接使用;
+
+            $("#content").html(html);
+            // 1. 不好维护;
+            // 2. 语义化不清晰;
+
+            // 为啥要用模板; 分层 分层 分层;
+
+            // M 数据层;
+            // V view 视图层;
+            // C controller 控制层;
+            
+      </script>
+</body>
+</html>

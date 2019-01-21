@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>蘑菇街</title>
+
+      <style>
+            *{
+                  margin: 0 ;
+                  padding: 0;
+            }
+            .pagination-container{
+                  width: 1280px;
+                  margin: 0 auto;
+            }
+            .item-wrapper{
+                  overflow: hidden;
+            }
+            .item{
+                  width: 320px;
+                  height: 480px;
+                  float: left;
+            }
+            .pagination {
+                  padding: 20px;
+                  position: fixed;
+                  bottom: 10%;
+                  width: 100%;
+                  text-align: center;
+                  background: rgba(0,0,0,0.5);
+            }
+            .pagination a{
+                  padding: 20px;
+                  line-height: 20px;
+                  text-decoration: none;
+                  color: #fff;
+                  font-size: 16px;
+            }
+            .pagination span{
+                  padding: 20px;
+                  box-shadow:  0 0 5px #ddd;
+            }
+      </style>
+</head>
+<body>
+      
+      <div class="pagination-container">
+
+            <div class="item-wrapper">
+                 
+            </div>
+
+           
+      </div>
+
+      <div class="pagination">
+
+      </div>
+
+
+      <script src="http://libs.baidu.com/jquery/1.11.3/jquery.js"></script>
+      <script src="http://www.jq22.com/demo/pagination20160204/jquery.pagination.js"></script>
+
+      <script src="./libs/art-template.js"></script>
+
+
+      <script type="text/html" id="item">
+            {{each list item}}
+                  <div class="item">
+                        <img src={{item.show.img}} alt="">
+                  </div>
+            {{/each}}
+      </script>
+
+      <script>
+
+            var showNum = 8;
+            $.ajax("https://list.mogujie.com/search",{
+                  dataType : "jsonp"
+            })
+            .then(render)
+
+            function render(res){
+                  var list = res.result.wall.list;
+                  $(".pagination").pagination({
+                        // list.lenght 表示当前数据总量;
+                        totalData : list.length,
+                        // showData 表示当前每页显示多少个;
+                        showData : showNum ,
+                        // callback 就是用来改变 页码的;
+                        callback : page
+                  });
+                  function page(api){
+                        // 根据页码选择要渲染的数组中的项;
+                        // 选中开头和结尾;
+                        var min = (api.getCurrent() - 1) * showNum;
+                        var max = api.getCurrent() * showNum
+
+                        // 让模板引擎进行数据渲染;
+                        var html = template("item",{ list : list.slice( min,max ) })
+                        // 把渲染结果放在 item-wrapper之中;
+                        $(".item-wrapper").html(html);
+                  }
+                  page({
+                        getCurrent : function(){
+                              return 1;
+                        }
+                  })
+            }
+
+            
+            // 1. 获取数据;
+
+            // 2. 根据数据数量渲染分页;
+
+
+
+            
+      </script>
+</body>
+</html>
